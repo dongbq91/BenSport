@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="">
+<meta name="author" content="M_Adnan">
+<title>Ben Sport</title>
+
+<!-- SLIDER REVOLUTION 4.x CSS SETTINGS -->
+<link rel="stylesheet" type="text/css" href="rs-plugin/css/settings.css" media="screen" />
+
+<!-- Bootstrap Core CSS -->
+<link href="css/bootstrap.min.css" rel="stylesheet">
+
+<!-- Custom CSS -->
+<link href="css/font-awesome.min.css" rel="stylesheet" type="text/css">
+<link href="css/ionicons.min.css" rel="stylesheet">
+<link href="css/main.css" rel="stylesheet">
+<link href="css/style.css" rel="stylesheet">
+<link href="css/responsive.css" rel="stylesheet">
+
+<!-- JavaScripts -->
+<script src="js/modernizr.js"></script>
+
+<!-- Online Fonts -->
+<link href='https://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Playfair+Display:400,700,900' rel='stylesheet' type='text/css'>
+
+<body>
+
+<!-- LOADER -->
+<div id="loader">
+  <div class="position-center-center">
+    <div class="ldr"></div>
+  </div>
+</div>
+
+<!-- Wrap -->
+<div id="wrap"> 
+  
+  <!-- header -->
+  <header th:replace="~{/site/fragments/header :: header}"></header>
+  
+  <!--======= HOME MAIN SLIDER =========-->
+  <section class="home-slider"> 
+    
+    
+  
+  <!-- Content -->
+  <div id="content"> 
+    
+    <!-- New Arrival -->
+    <section class="padding-top-100 padding-bottom-100">
+      <div class="container"> 
+        
+
+      <!-- New Arrival -->
+      <div class="arrival-block"> 
+        
+        <!-- Item -->
+        <div class="item" th:each="item : ${listProduct8}"> 
+          <!-- Images --> 
+          <img class="img-1" th:src="@{'/loadImage?imageName='+${item.image}}" alt="">
+          <img class="img-2" th:src="@{'/loadImage?imageName='+${item.image}}" alt=""> 
+          <!-- Overlay  -->
+          <div class="overlay"> 
+            <!-- Price --> 
+            <span class="price">[[${#numbers.formatDecimal(item.price - (item.price * item.discount/100), 1, 'DEFAULT', 0, 'DEFAULT')}]]<small>VND</small></span>
+            
+          </div>
+          <!-- Item Name -->
+          <div class="item-name">
+          	<a th:href="@{/productDetail(id=${item.productId})}">[[${item.name}]]</a>
+            
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    <!-- Popular Products -->
+    <section class="padding-top-50 padding-bottom-150">
+      <div class="container"> 
+        
+        <!-- Main Heading -->
+        <div class="heading text-center">
+          <h4>popular products</h4>
+          </div>
+        
+        <!-- Popular Item Slide -->
+        <div class="papular-block block-slide"> 
+          
+          <!-- Item -->
+          <div class="item" th:each="item : ${topOrderList}"> 
+            <!-- Item img -->
+            <div class="item-img">
+	            <img class="img-1" th:src="@{'/loadImage?imageName='+${item[1]}}" alt="" >
+	            <img class="img-2" th:src="@{'/loadImage?imageName='+${item[1]}}" alt="" > 
+              <!-- Overlay -->
+              <div class="overlay">
+                <div class="position-center-center">
+                  <div class="inn">
+                  <a th:href="@{'/loadImage?imageName='+${item[1]}}" data-lighter data-toggle="tooltip" data-placement="top" title="Detail">
+                  	<i class="icon-magnifier"></i>
+                  </a>
+                  <a th:href="@{/addToCart(productId=${item[2]})}" data-toggle="tooltip" data-placement="top" title="Thêm vào giỏ hàng">
+                  	<i class="icon-basket"></i>
+                  </a>
+                  <a href="#." data-toggle="tooltip" data-placement="top" title="Add To WishList">
+                  	<i class="icon-heart"></i>
+                  </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- Item Name -->
+            <div class="item-name">
+              <a href="#.">[[${item[0]}]]</a>
+              <p>Lorem ipsum dolor sit amet</p>
+            </div>
+            <!-- Price --> 
+            <span class="price">[[${#numbers.formatDecimal(item[4] - (item[4] * item[5]/100), 1, 'DEFAULT', 0, 'DEFAULT')}]] <small>VND</small></span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </div>
+  
+  <!--======= FOOTER =========-->
+  <footer th:replace="~{/site/fragments/footer :: footer}"></footer>
+  
+  <!--======= RIGHTS =========--> 
+  
+</div>
+<script src="js/jquery-1.11.3.min.js"></script> 
+<script src="js/bootstrap.min.js"></script> 
+<script src="js/own-menu.js"></script> 
+<script src="js/jquery.lighter.js"></script> 
+<script src="js/owl.carousel.min.js"></script> 
+
+<!-- SLIDER REVOLUTION 4.x SCRIPTS  --> 
+<script type="text/javascript" src="rs-plugin/js/jquery.tp.t.min.js"></script> 
+<script type="text/javascript" src="rs-plugin/js/jquery.tp.min.js"></script> 
+<script src="js/main.js"></script> 
+<script src="js/main.js"></script>
+</body>
+</html>
